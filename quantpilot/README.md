@@ -82,54 +82,62 @@ QuantPilot is organized around seven primary components, supported by configurat
 
 ```mermaid
 flowchart TB
-    U["User Query"]
+    U["User Query"] --> V["Input Guardrails"]
+    V --> G["LangGraph Workflow"]
+    G --> QA["Query Analyzer"]
+    QA --> RQ["ResearchQuery"]
+    RQ --> RP["Research Planner"]
+    RP --> PLAN["ResearchPlan"]
+    PLAN --> EX["Research Executor"]
+    EX --> MCP["MCP Client / Servers"]
+    MCP --> TOOLS["Market / Financial / Quant / Research Tools"]
+    TOOLS --> TR["Typed Tool Results"]
+    TR --> EB["Evidence Builder"]
+    EB --> EL["EvidenceLedger"]
+    EL --> TG["Thesis Generator"]
+    TG --> TH["Thesis"]
+    TH --> DA["Devil's Advocate"]
+    DA --> CR["Critique"]
+    CR --> AD["Evidence Adjudicator"]
+    AD --> AJ["Adjudication"]
+    AJ -->|PASS or repair limit reached| FR["Final Report Generator"]
+    FR --> FINAL["FinalReport"]
+    AJ -->|FAIL and repair available| RP2["Replan Researcher"]
+    RP2 --> EX
+    FINAL --> OG["Output Guardrail"]
 
-    subgraph CORE["Seven primary components"]
-        G["Graph<br/>Workflow orchestration"]
-        A["Agents<br/>Planning and reasoning"]
-        T["Tools<br/>Market / Financial / Quant / Research"]
-        M["MCP<br/>External tool boundary"]
-        S["Schemas<br/>Typed data contracts"]
-        V["Guardrails<br/>Input and output validation"]
-        L["LLM<br/>Model invocation and routing"]
-    end
+    STATE[["QuantPilotState<br/>Shared typed graph state"]]
+    RQ -.-> STATE
+    PLAN -.-> STATE
+    TR -.-> STATE
+    EL -.-> STATE
+    TH -.-> STATE
+    CR -.-> STATE
+    AJ -.-> STATE
+    FINAL -.-> STATE
 
-    subgraph SUPPORT["Supporting infrastructure"]
-        C["Cache and reuse"]
-        P["Checkpointing"]
-        E["External evaluation"]
-        CFG["Configuration"]
-    end
-
-    R["Structured Research Report"]
-
-    U --> V --> G
-    G <--> A
-    A <--> L
-    A --> T
-    T <--> M
-    T <--> S
-    A <--> S
-    G <--> C
-    G <--> P
-    G --> R
-    R --> V
-    E -. evaluates saved runs .-> G
-    CFG --> L
+    LLM["LLM Gateway"] <--> QA
+    LLM <--> RP
+    LLM <--> TG
+    LLM <--> DA
+    LLM <--> AD
+    CACHE["Tool / LLM Caches"] <--> EX
+    CHECK["Graph Checkpointer"] <--> STATE
+    EVAL["External Evaluation"] -. evaluates saved runs .-> G
+    CFG["Configuration"] --> LLM
 
     classDef input fill:#dbeafe,stroke:#2563eb,color:#172554,stroke-width:2px
-    classDef graph fill:#ede9fe,stroke:#7c3aed,color:#3b0764,stroke-width:2px
-    classDef agents fill:#dcfce7,stroke:#16a34a,color:#14532d
-    classDef data fill:#cffafe,stroke:#0891b2,color:#164e63
-    classDef infra fill:#fef3c7,stroke:#d97706,color:#78350f
+    classDef orchestration fill:#ede9fe,stroke:#7c3aed,color:#3b0764,stroke-width:2px
+    classDef contracts fill:#dcfce7,stroke:#16a34a,color:#14532d
+    classDef evidence fill:#fef3c7,stroke:#d97706,color:#78350f
+    classDef infra fill:#cffafe,stroke:#0891b2,color:#164e63
     classDef output fill:#ffe4e6,stroke:#e11d48,color:#881337
 
-    class U input
-    class G graph
-    class A agents
-    class T,M,S,V,L data
-    class C,P,E,CFG infra
-    class R output
+    class U,V input
+    class G,QA,RP,EX,EB,TG,DA,AD,RP2 orchestration
+    class RQ,PLAN,TR,EL,TH,CR,AJ,STATE contracts
+    class MCP,TOOLS,LLM,CACHE,CHECK,CFG,EVAL infra
+    class FR,FINAL,OG output
 ```
 
 **Architectural separation**
@@ -318,30 +326,38 @@ QuantPilot uses distinct mechanisms for different forms of reuse and persistence
 
 ```mermaid
 flowchart TB
-    EXEC["Research Execution"]
-    INRUN["In-run result reuse"]
-    INTER["Initial-to-replan reuse"]
-    TOOL["Persistent tool-result cache"]
-    LLM["LLM response cache<br/>(where enabled)"]
-    EVID["Evidence-assessment reuse"]
-    CHECK["Graph checkpointing"]
-    STATE["Workflow State"]
+    EXEC["Research Executor"]
+    COMPUTED["In-run computed_results"]
+    REPLAN["Initial-plan / replan result reuse"]
+    TOOL["SQLite tool-result cache<br/>TTL + serialization"]
+    EVID["Evidence Builder"]
+    ASSESS["Evidence-assessment reuse<br/>matching evidence content"]
+    LLM["LLM Gateway"]
+    LLM_CACHE["LLM response cache<br/>where enabled"]
+    STATE[["QuantPilotState<br/>Shared graph state"]]
+    CHECK["LangGraph checkpointer"]
+    EVAL["External evaluation runner"]
 
-    EXEC --> INRUN
-    EXEC --> INTER
+    EXEC <--> COMPUTED
+    EXEC <--> REPLAN
     EXEC <--> TOOL
-    EXEC <--> LLM
     EXEC --> EVID
+    EVID <--> ASSESS
+    LLM <--> LLM_CACHE
     EXEC <--> STATE
+    LLM <--> STATE
     STATE <--> CHECK
+    STATE -. saved run artifacts .-> EVAL
 
     classDef execution fill:#dbeafe,stroke:#2563eb,color:#172554
     classDef reuse fill:#dcfce7,stroke:#16a34a,color:#14532d
     classDef persistence fill:#fef3c7,stroke:#d97706,color:#78350f
+    classDef evaluation fill:#ede9fe,stroke:#7c3aed,color:#3b0764
 
-    class EXEC,STATE execution
-    class INRUN,INTER,EVID reuse
-    class TOOL,LLM,CHECK persistence
+    class EXEC,EVID,LLM execution
+    class COMPUTED,REPLAN,ASSESS reuse
+    class TOOL,LLM_CACHE,STATE,CHECK persistence
+    class EVAL evaluation
 ```
 
 | Mechanism | Purpose |

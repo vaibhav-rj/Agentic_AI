@@ -6,38 +6,71 @@ The `src/schemas/` package defines QuantPilot's typed data contracts using Pydan
 
 ```mermaid
 flowchart TD
-    Q[ResearchQuery] --> P[ResearchPlan]
-    P --> T[Tool result schemas]
-    T --> E[EvidenceLedger]
-    E --> H[Thesis]
-    H --> C[Critique]
-    C --> A[Adjudication]
-    A --> R[FinalReport]
+    INPUT["User Query"] --> QA["Query Analyzer"]
+    QA --> RQ["ResearchQuery"]
+    RQ --> RP["Research Planner"]
+    RP --> PLAN["ResearchPlan"]
+    PLAN --> EXEC["Research Executor"]
+    EXEC --> TOOLS["Typed tool outputs"]
+    TOOLS --> EB["Evidence Builder"]
+    EB --> LEDGER["EvidenceLedger"]
+    LEDGER --> TG["Thesis Generator"]
+    TG --> TH["Thesis"]
+    TH --> DA["Devil's Advocate"]
+    DA --> CR["Critique"]
+    CR --> ADJ["Evidence Adjudicator"]
+    ADJ --> AD["Adjudication"]
+    AD -->|PASS / repair limit reached| REPORT["Final Report Generator"]
+    REPORT --> FR["FinalReport"]
+    AD -->|FAIL / repair available| REPLAN["Replan Researcher"]
+    REPLAN --> EXEC
 
-    subgraph Tool contracts
-      M[HistoricalPrices]
-      F[FinancialMetrics]
-      N[Return / Volatility / Drawdown]
-      X[ResearchResult]
+    subgraph Tool result contracts
+        M["HistoricalPrices"]
+        F["FinancialMetrics"]
+        Q["ReturnResult / ReturnSeries"]
+        VOL["VolatilityResult"]
+        DD["DrawdownResult"]
+        X["ResearchResult / ResearchSource"]
     end
-    T --> M
-    T --> F
-    T --> N
-    T --> X
+    TOOLS --> M
+    TOOLS --> F
+    TOOLS --> Q
+    TOOLS --> VOL
+    TOOLS --> DD
+    TOOLS --> X
+
+    STATE[["QuantPilotState<br/>src/graph/state.py<br/>Shared TypedDict state"]]
+    RQ -. stored as .-> STATE
+    PLAN -. stored as .-> STATE
+    TOOLS -. stored as .-> STATE
+    LEDGER -. stored as .-> STATE
+    TH -. stored as .-> STATE
+    CR -. stored as .-> STATE
+    AD -. stored as .-> STATE
+    FR -. stored as .-> STATE
 
     classDef query fill:#dbeafe,stroke:#2563eb,color:#172554,stroke-width:1.5px
     classDef tool fill:#dcfce7,stroke:#16a34a,color:#14532d,stroke-width:1.5px
     classDef evidence fill:#fef3c7,stroke:#d97706,color:#78350f,stroke-width:1.5px
     classDef reasoning fill:#f3e8ff,stroke:#9333ea,color:#581c87,stroke-width:1.5px
     classDef report fill:#ffe4e6,stroke:#e11d48,color:#881337,stroke-width:1.5px
-    class Q,P query
-    class M,F,N,X tool
-    class E evidence
-    class H,C,A reasoning
-    class R report
+    classDef state fill:#cffafe,stroke:#0891b2,color:#164e63,stroke-width:2px
+
+    class RQ,PLAN query
+    class M,F,Q,VOL,DD,X tool
+    class LEDGER evidence
+    class TH,CR,AD reasoning
+    class FR report
+    class STATE state
 ```
 
 The diagram shows the conceptual progression, not a claim that every schema is instantiated by every query. The graph and agent implementations determine when each model is created and passed onward.
+
+### Graph state and node-output linkage
+
+`QuantPilotState` in `src/graph/state.py` is the shared TypedDict contract for the LangGraph workflow. It carries the required request inputs and the structured outputs produced as execution advances: `ResearchQuery`, `ResearchPlan`, tool results, `EvidenceLedger`, `Thesis`, `Critique`, `Adjudication` and `FinalReport`. Replanning metadata and optional financial-metric selections are also carried where applicable. These are typed state fields linking nodes; `QuantPilotState` is not a Pydantic wrapper around the individual output models. Generated fields remain optional until their producing node populates them.
+
 
 ## Model inventory
 
