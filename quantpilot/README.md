@@ -91,39 +91,41 @@ flowchart TB
         M["MCP<br/>External tool boundary"]
         S["Schemas<br/>Typed data contracts"]
         V["Guardrails<br/>Input and output validation"]
-    end
-
-    subgraph LLM_INFRA["LLM infrastructure"]
-        LLM_CACHE["LLM Response Cache"]
-        LLM_GW["LLM Gateway<br/>Role-aware routing, balancing and fallback"]
-        HF_INIT["Hugging Face Transformers<br/>Secondary model-load / initialization node"]
-        LLM_CACHE --> LLM_GW
-        LLM_GW <--> HF_INIT
+        L["LLM<br/>Model invocation and routing"]
     end
 
     subgraph SUPPORT["Supporting infrastructure"]
-        TOOL_CACHE["Tool-result Cache<br/>Persistent tool-output reuse"]
+        TC["Tool-result Cache<br/>Persistent tool-output reuse"]
         P["Checkpointing"]
         E["External evaluation"]
         CFG["Configuration"]
+    end
+
+    subgraph LLM_INFRA["LLM infrastructure"]
+        LC["LLM Response Cache"]
+        GW["LLM Gateway<br/>Role-aware routing, load balancing and fallback"]
+        HF["Hugging Face Transformers<br/>Secondary model-load / initialization"]
+        LC --> GW
+        GW <--> HF
     end
 
     R["Structured Research Report"]
 
     U --> V --> G
     G <--> A
-    A <--> LLM_GW
+    A <--> L
     A --> T
     T <--> M
     T <--> S
     A <--> S
-    G <--> TOOL_CACHE
+    G <--> TC
     G <--> P
     G --> R
     R --> V
     E -. evaluates saved runs .-> G
-    CFG --> LLM_GW
-    CFG --> HF_INIT
+    L <--> GW
+    CFG --> GW
+    CFG --> HF
 
     classDef input fill:#dbeafe,stroke:#2563eb,color:#172554,stroke-width:2px
     classDef graph fill:#ede9fe,stroke:#7c3aed,color:#3b0764,stroke-width:2px
@@ -135,8 +137,8 @@ flowchart TB
     class U input
     class G graph
     class A agents
-    class T,M,S,V data
-    class TOOL_CACHE,P,E,CFG,LLM_CACHE,LLM_GW,HF_INIT infra
+    class T,M,S,V,L data
+    class TC,P,E,CFG,LC,GW,HF infra
     class R output
 ```
 
