@@ -1,0 +1,10 @@
+{
+    "user_query": "Assess Apple's valuation. Contact test user at analyst@example.com or +91 9876543210 if clarification is needed.",
+    "ticker": "AAPL",
+    "start": "2025-01-01",
+    "end": "2025-04-01",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap"
+    ]
+}

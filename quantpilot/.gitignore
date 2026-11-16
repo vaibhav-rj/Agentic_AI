@@ -1,0 +1,42 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.env
+.env.*
+!.env.example
+*.log
+logs/*
+!logs/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+.vscode/
+.DS_Store
+Thumbs.db
+INITIAL_README.md
+quantpilot_env/
+# Secrets
+
+# Python tooling
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# Runtime databases and SQLite files
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.db
+
+# Temporary and backup files
+*.tmp
+*.bak
+*.swp
+*~

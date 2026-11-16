@@ -1,0 +1,10 @@
+{
+    "user_query": "Analyze Microsoft's valuation using its PE ratio and market capitalization.",
+    "ticker": "MSFT",
+    "start": "2025-02-01",
+    "end": "2025-05-01",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap"
+    ]
+}

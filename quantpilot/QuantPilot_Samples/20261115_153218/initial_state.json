@@ -1,0 +1,10 @@
+{
+    "user_query": "Analyze Apple's short-window historical volatility and returns.",
+    "ticker": "AAPL",
+    "start": "2025-01-13",
+    "end": "2025-01-16",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap"
+    ]
+}

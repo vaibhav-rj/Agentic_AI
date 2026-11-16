@@ -1,0 +1,11 @@
+{
+    "user_query": "Compare Apple's returns, valuation, beta and market trend.",
+    "ticker": "AAPL",
+    "start": "2025-01-01",
+    "end": "2025-04-01",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap",
+        "beta"
+    ]
+}

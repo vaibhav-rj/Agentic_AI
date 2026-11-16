@@ -1,0 +1,30 @@
+﻿run_id,user_query,analyzer_task_types,planned_task_types,expected_task_types_reference,intent_correctness_review,review_notes,missing_expected_task_types,additional_unrequested_task_types,reference_basis
+20261113_153553,"Compare Apple's valuation, and market trend.",comparison;financial_analysis;market_analysis,comparison;financial_analysis;market_analysis,,,,,,
+20261113_192304,Analyze Apple's recent market trend and price movement.,market_analysis,market_analysis,,,,,,
+20261113_194259,Analyze Microsoft's valuation using its PE ratio and market capitalization.,financial_analysis,financial_analysis,,,,,,
+20261113_195420,Calculate and assess NVIDIA's historical returns.,financial_analysis;quantitative_analysis,financial_analysis;quantitative_analysis,,,,,,
+20261113_202108,Analyze Amazon's historical volatility and maximum drawdown.,financial_analysis;quantitative_analysis,financial_analysis;quantitative_analysis,,,,,,
+20261113_203549,Analyze Apple's valuation and historical volatility.,financial_analysis;quantitative_analysis,financial_analysis;quantitative_analysis,,,,,,
+20261113_205401,"Compare Apple's returns, valuation, beta and market trend.",comparison;financial_analysis;quantitative_analysis,comparison;financial_analysis;quantitative_analysis,,,,,,
+20261113_210839,"Evaluate Tesla's revenue, earnings and profitability trends.",financial_analysis;quantitative_analysis,financial_analysis;quantitative_analysis,,,,,,
+20261113_212342,"Assess how interest rates, inflation and broader market conditions may affect equity markets.",financial_analysis;market_analysis,financial_analysis;market_analysis,,,,,,
+20261113_215045,Compare the market performance and historical returns of SPY and QQQ.,comparison;financial_analysis;market_analysis,comparison;financial_analysis;market_analysis,,,,,,
+20261114_012733,"For Apple, conduct a structured assessment of its market and financial position 
+    over the supplied analysis period. Examine the direction and consistency of its share-price movement 
+    and identify notable changes in market trend. Assess valuation using the available price-to-earnings 
+    ratio and market capitalization, explaining what each metric can and cannot establish. Calculate 
+    historical total returns and assess volatility and maximum drawdown where sufficient observations 
+    are available. Compare the implications of the market, financial and quantitative findings without 
+    treating repeated copies of the same underlying evidence as independent corroboration. Identify 
+    any disagreement between sources, missing metrics, incomplete observations or tool limitations. 
+    Distinguish measured facts from external contextual research, avoid unsupported causal claims, 
+    and state whether the evidence is sufficient for a defensible conclusion. Keep the final assessment 
+    specific to the requested period, explain material limitations, and do not provide an unsupported 
+    buy or sell recommendation.",comparison;financial_analysis;market_analysis;quantitative_analysis,comparison;financial_analysis;market_analysis;quantitative_analysis,,,,,,
+20261114_015943,AAPL valuation analysis,financial_analysis,financial_analysis,,,,,,
+20261115_141438,Analyze Apple's returns and volatility over the last 6 months.,financial_analysis;quantitative_analysis,financial_analysis;quantitative_analysis,,,,,,
+20261115_142810,Analyze Microsoft's market returns from 2025-02-01 to 2025-04-30.,market_analysis,market_analysis,,,,,,
+20261115_145232,"Assess Google's valuation, revenue and profitability.",financial_analysis;quantitative_analysis,financial_analysis;quantitative_analysis,,,,,,
+20261115_153218,Analyze Apple's short-window historical volatility and returns.,market_analysis;quantitative_analysis,market_analysis;quantitative_analysis,,,,,,
+20261115_154408,Assess Apple's valuation. Contact test user at [EMAIL REDACTED] or [PHONE REDACTED] if clarification is needed.,financial_analysis;quantitative_analysis,financial_analysis;quantitative_analysis,,,,,,
+20261115_155641,Review this company's market and valuation context; GSTIN[IDENTIFIER REDACTED]; PAN: [PAN REDACTED]; company registration number[IDENTIFIER REDACTED].,financial_analysis;market_analysis,financial_analysis;market_analysis,,,,,,

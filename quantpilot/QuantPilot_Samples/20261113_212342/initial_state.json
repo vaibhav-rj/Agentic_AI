@@ -1,0 +1,10 @@
+{
+    "user_query": "Assess how interest rates, inflation and broader market conditions may affect equity markets.",
+    "ticker": "SPY",
+    "start": "2024-10-01",
+    "end": "2025-04-01",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap"
+    ]
+}

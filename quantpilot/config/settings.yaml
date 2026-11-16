@@ -1,0 +1,17 @@
+project:
+  name: quantpilot
+  environment: development
+
+models:
+  reasoning:
+    provider: huggingface
+    model: TBD
+  fast:
+    provider: huggingface
+    model: TBD
+  judge:
+    provider: huggingface
+    model: TBD
+  guardrail:
+    provider: huggingface
+    model: TBD

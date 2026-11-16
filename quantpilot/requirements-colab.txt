@@ -1,0 +1,40 @@
+# Colab already supplies a CUDA/PyTorch stack.
+# We deliberately do NOT pin torch here yet.
+# bitsandbytes will be added when we begin quantized local-model inference.
+
+# QuantPilot — Google Colab
+# Python 3.12.x
+
+langchain==1.4.3
+langgraph==1.2.12
+langchain-huggingface==1.2.2
+langchain-community==0.4.2
+
+transformers==5.17.0
+accelerate==1.15.0
+bitsandbytes==0.50.2
+
+pydantic==2.13.5
+python-dotenv==1.2.3
+#litellm==1.103.0
+
+mcp==2.2.0
+deepagents==0.7.14
+
+numpy==2.2.6
+pandas==2.2.3
+yfinance==1.7.0
+
+tavily-python==0.8.4
+pytest==9.1.1
+langgraph-checkpoint-sqlite==3.1.1
+
+anyio==4.15.1
+langsmith==0.14.1
+platformdirs==4.12.2
+
+litellm==1.106.6
+langchain-litellm==0.11.2
+
+fastapi==0.162.4
+soundfile ==0.14.0

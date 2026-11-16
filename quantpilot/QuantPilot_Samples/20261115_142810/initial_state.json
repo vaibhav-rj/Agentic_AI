@@ -1,0 +1,10 @@
+{
+    "user_query": "Analyze Microsoft's market returns from 2025-02-01 to 2025-04-30.",
+    "ticker": "MSFT",
+    "start": "2024-11-01",
+    "end": "2025-02-01",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap"
+    ]
+}

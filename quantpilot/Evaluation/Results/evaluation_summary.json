@@ -1,0 +1,74 @@
+{
+  "generated_at_utc": "2026-11-15T23:36:13.600723+00:00",
+  "run_count": 21,
+  "terminal_states": {
+    "FINAL_REPORT": 18,
+    "GUARDRAIL_REJECTED": 2,
+    "INCOMPLETE_OR_FAILED": 1
+  },
+  "input_guardrail_observations": {
+    "ACCEPTED": 19,
+    "REJECTED": 2
+  },
+  "output_guardrail_observations": {
+    "ISSUES_FOUND": 11,
+    "UNVERIFIED": 4,
+    "NOT_OBSERVED": 3,
+    "PASS_LOGGED": 3
+  },
+  "adjudication_decisions": {
+    "FAIL": 11,
+    "PASS": 7,
+    "NOT_REACHED": 3
+  },
+  "adjudication_quality_bands": {
+    "FAIRLY_PASSED": 7,
+    "FULLY_PASSED": 7,
+    "STRONGLY_PASSED": 3,
+    "NOT_RECORDED": 3,
+    "AVERAGE": 1
+  },
+  "evaluation_outcomes": {
+    "FAIRLY_PASSED": 7,
+    "FULLY_PASSED": 7,
+    "STRONGLY_PASSED": 3,
+    "REVIEW_REQUIRED": 3,
+    "PARTIAL_PASS": 1
+  },
+  "final_report_completion_rate": 0.8571,
+  "final_report_schema_complete_rate": 1.0,
+  "final_report_thesis_consistency_rate": 1.0,
+  "final_report_confidence_alignment_rate": 1.0,
+  "final_report_evidence_debt_disclosure_rate": 1.0,
+  "query_plan_task_type_alignment_rate": 1.0,
+  "thesis_confidence_valid_range_rate": 1.0,
+  "critique_confidence_valid_range_rate": 1.0,
+  "critique_flags_covered_by_adjudication_debt_rate": 1.0,
+  "adjudication_decision_debt_consistency_rate": 1.0,
+  "adjudication_completion_rate": 0.8571,
+  "adjudication_pass_rate_among_decided": 0.3889,
+  "mean_adjudication_quality_score": 0.8255,
+  "mean_final_report_confidence": 0.7678,
+  "mean_logged_node_duration_seconds": 167.641,
+  "runs_with_replan": 18,
+  "runs_with_log_error_signal": 3,
+  "runs_with_pii_redaction_signal": 5,
+  "metric_interpretation": {
+    "completion_rates": "Artifact/log-derived operational rates; not answer correctness.",
+    "adjudication_pass_rate": "System decision distribution; not independent adjudicator accuracy without labelled ground truth.",
+    "evidence_duplicate_count": "Exact normalized duplicate tuples only; semantic duplicates require review.",
+    "output_guardrail": "PASS_LOGGED reflects successful completion without logged issues; UNVERIFIED is kept distinct from PASS. Neither proves factual correctness.",
+    "confidence": "Thesis and critique confidence are checked for presence/type/range only; semantic calibration requires independent labelled review and is not inferred from the model's own text.",
+    "critique_adjudication": "Deterministic critique flags are checked against evidence debt and PASS/FAIL consistency; generated critique/rationale semantic quality is not independently scored.",
+    "input_guardrail": "Input checks cover logged execution, scope acceptance/rejection, and PII redaction. They do not estimate false-positive/negative rates without labelled in-scope/out-of-scope queries.",
+    "final_report": "Structural and cross-stage consistency checks; they do not establish factual correctness or claim-level faithfulness.",
+    "query_plan_alignment": "Analyzer-to-plan consistency only; it does not establish that the analyzer correctly understood the user's intent.",
+    "duration": "Sum of logged node durations; excludes unlogged setup and overhead.",
+    "decision-->Fail": "Of the 11 adjudication-FAIL cases, 3 were rated STRONGLY_PASSED, 7 FAIRLY_PASSED, and 1 PARTIAL_PASS; none was FULLY_FAILED. PASS/FAIL is an evidence-sufficiency decision, not an independent factual-accuracy verdict.",
+    "judge_quality_review": "Preliminary qualitative reviewer assessment of 18 saved runs (not deterministic code output, not an independent LLM-judge or human-adjudicated result): Evidence Builder mean confidence 0.909, with 206/206 structured market/financial/quantitative values matching saved tool results; status/content quality was mixed. Thesis Generator mean confidence 0.771 and content-quality assessment 3.22/5; Devil's Advocate mean confidence 0.675 and assessment 3.83/5 (strongest of the reviewed generators); Evidence Adjudicator mean confidence 0.768 and rationale assessment 3.39/5. Confidence-fit comments are also qualitative reviewer judgments, not statistical calibration; no Brier score, ECE, or reliability curve was computed.",
+    "external_research_fidelity": "Preliminary heuristic review of 28 Tavily research-result records representing 21 distinct source-content items flagged possible prompt/meta-reasoning contamination in 10/28 records (8/21 distinct items); 2 summaries were under 500 characters and 6 were under half the corresponding source length. These length/contamination flags do not prove semantic omissions or factual corruption. The observed 512-token generation cap and reasoning/prompt overhead are plausible contributors, not a proven cause for every short summary. Passing suitable raw source.content to Evidence Builder is a possible mitigation, not an implemented feature.",
+    "guardrail_reference_review": "Preliminary manual-reference assessment only. Input-scope review: 19 TP, 1 TN, 0 FP, 0 FN; input-length checks accepted 20 valid cases and rejected 1 below-minimum case. For output contextual review, 14 decided cases yielded 9 TP, 2 FP, 2 FN, and 1 TN (precision/recall 81.8%, FPR 66.7%, FNR 18.2%, specificity 33.3%); 4 UNVERIFIED cases were excluded, not counted as passes. Small manually reviewed samples are not benchmark-grade estimates.",
+    "output_guardrail_review": "Across 21 runs, output-guardrail observations were 11 ISSUES_FOUND, 4 UNVERIFIED, 3 PASS_LOGGED, and 3 NOT_OBSERVED. UNVERIFIED means contextual review could not be completed reliably; it is neither a pass nor evidence of workflow failure. Structural report checks passed for 18/18 generated reports but do not establish factual correctness.",
+    "evaluation_scope_caveats": "The 18 completed reports span two Final Report prompt versions (the first 12 and final 8 runs). Query-intent reference review found minimum required task-type coverage in 16/18 cases; the two misses were QP10 (SPY/QQQ historical-returns comparison) and QP14 (Microsoft market returns), both attributable to Query Analyzer omissions. These bounded results should not be generalized as overall analyzer accuracy."
+  }
+}

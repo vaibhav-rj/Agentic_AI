@@ -1,0 +1,10 @@
+{
+    "user_query": "For Apple, conduct a structured assessment of its market and financial position \n    over the supplied analysis period. Examine the direction and consistency of its share-price movement \n    and identify notable changes in market trend. Assess valuation using the available price-to-earnings \n    ratio and market capitalization, explaining what each metric can and cannot establish. Calculate \n    historical total returns and assess volatility and maximum drawdown where sufficient observations \n    are available. Compare the implications of the market, financial and quantitative findings without \n    treating repeated copies of the same underlying evidence as independent corroboration. Identify \n    any disagreement between sources, missing metrics, incomplete observations or tool limitations. \n    Distinguish measured facts from external contextual research, avoid unsupported causal claims, \n    and state whether the evidence is sufficient for a defensible conclusion. Keep the final assessment \n    specific to the requested period, explain material limitations, and do not provide an unsupported \n    buy or sell recommendation.",
+    "ticker": "AAPL",
+    "start": "2024-10-01",
+    "end": "2025-04-01",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap"
+    ]
+}

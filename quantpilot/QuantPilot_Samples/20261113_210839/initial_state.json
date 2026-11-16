@@ -1,0 +1,11 @@
+{
+    "user_query": "Evaluate Tesla's revenue, earnings and profitability trends.",
+    "ticker": "TSLA",
+    "start": "2024-10-01",
+    "end": "2025-04-01",
+    "financial_metrics": [
+        "totalRevenue",
+        "netIncome",
+        "profitMargins"
+    ]
+}

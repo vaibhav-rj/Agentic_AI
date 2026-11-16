@@ -1,0 +1,10 @@
+{
+    "user_query": "Calculate and assess NVIDIA's historical returns.",
+    "ticker": "NVDA",
+    "start": "2025-01-01",
+    "end": "2025-03-01",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap"
+    ]
+}

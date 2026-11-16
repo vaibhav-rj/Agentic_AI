@@ -1,0 +1,10 @@
+{
+    "user_query": "Review this company's market and valuation context; GSTIN: 22AAAAA0000A1Z5; PAN: ABCDE1234F; company registration number: U12345MH2020PLC123456.",
+    "ticker": "INFY",
+    "start": "2025-01-01",
+    "end": "2025-04-01",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap"
+    ]
+}

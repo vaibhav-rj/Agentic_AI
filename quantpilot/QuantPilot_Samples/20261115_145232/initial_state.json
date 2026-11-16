@@ -1,0 +1,12 @@
+{
+    "user_query": "Assess Google's valuation, revenue and profitability.",
+    "ticker": "GOOGL",
+    "start": "2024-10-01",
+    "end": "2025-04-01",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap",
+        "totalRevenue",
+        "profitMargins"
+    ]
+}

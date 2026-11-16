@@ -1,0 +1,10 @@
+{
+    "user_query": "Compare the market performance and historical returns of SPY and QQQ.",
+    "ticker": "SPY",
+    "start": "2025-01-01",
+    "end": "2025-04-01",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap"
+    ]
+}

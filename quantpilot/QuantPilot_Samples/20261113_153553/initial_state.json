@@ -1,0 +1,10 @@
+{
+    "user_query": "Compare Apple's valuation, and market trend.",
+    "ticker": "AAPL",
+    "start": "2025-01-01",
+    "end": "2025-01-08",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap"
+    ]
+}

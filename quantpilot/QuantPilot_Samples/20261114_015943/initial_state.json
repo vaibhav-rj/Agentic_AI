@@ -1,0 +1,10 @@
+{
+    "user_query": "AAPL valuation analysis",
+    "ticker": "AAPL",
+    "start": "2025-02-01",
+    "end": "2025-04-01",
+    "financial_metrics": [
+        "trailingPE",
+        "marketCap"
+    ]
+}
