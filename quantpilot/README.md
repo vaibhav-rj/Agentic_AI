@@ -453,6 +453,7 @@ The evaluation demonstrates that the workflow was exercised across multi-stage e
 
 The recorded metrics must be interpreted according to what they actually measure.
 
+- Currently we have focussed o consolidated financila data aggregation for a single firm. 
 - An adjudication `PASS` indicates evidence sufficiency under the current rules, **not 100% proof of factual correctness(depends on tool accuracy:- Tavily/yfinnace which isn't absolute)**.
 - Schema completeness establishes structural validity, not claim-level accuracy or source faithfulness.
 - `PASS_LOGGED` means no issue was recorded; it does not establish perfect output quality.
@@ -624,6 +625,7 @@ The next improvements are driven by observed limitations rather than speculative
 5. Improve external research source-to-summary fidelity, date framing and retention of caveats.
 6. Expand labelled, ground-truth-based evaluation for claim accuracy, judge reliability and confidence calibration.
 7. Continue targeted provider-routing and persistence tests when reproducible issues justify changes.
+8. Introduce ReACT like loops to handle the data aggregation of multiple companies.
 
 ## 16. Component documentation
 
