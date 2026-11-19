@@ -458,9 +458,11 @@ The recorded metrics must be interpreted according to what they actually measure
 - `PASS_LOGGED` means no issue was recorded; it does not establish perfect output quality.
 - `UNVERIFIED` is neither a confirmed pass nor a confirmed issue.
 - Confidence scores and the mean adjudication quality score are not independently calibrated accuracy measures.
-- The 206/206 structured-value comparison demonstrates preservation against saved tool results, not correctness of the underlying provider data:- tool results correctness subject to 
+- The 206/206 structured-value comparison demonstrates preservation against saved tool results, not correctness of the underlying provider data:- tool results correctness subject to :-
+```text
 (i)degree of convergence of Tavily research articles timeline with query's initial_state start and end time window.
 (ii)The quality of data extracted by yfinance in case of non (external) research tool exceution depends on the granularity of data-sync periodicity.
+```
 - The 167.641-second figure is mean logged node duration, not total wall-clock runtime.
 - Financial metrics obtained from current snapshots should not be represented as historical values for a selected price period.
 - Market-data coverage depends on trading days; short windows may not contain enough observations for every quantitative calculation.
