@@ -618,7 +618,7 @@ The separate evaluation runner serves a different purpose: it evaluates saved en
 The next improvements are driven by observed limitations rather than speculative architectural expansion:
 
 1. Strengthen output-guardrail parsing, contextual verification and explicit `UNVERIFIED` handling.
-2. Improve Query Analyzer (i)intent/classification correctness. Eg:-coverage for historical-return and quantitative task decomposition in present samples, and (ii)also task-to-tool appropriateness accuracy.
+2. Improve:- (i)Query Analyzer intent/classification correctness. Eg:-coverage for historical-return and quantitative task decomposition in present samples, and (ii)also task-to-tool appropriateness accuracy.
 3. Harden financial-metric dependency handling and executor failure boundaries.
 4. Extend exact-content evidence reuse towards semantic identity while preserving provenance and independent corroboration.
 5. Improve external research source-to-summary fidelity, date framing and retention of caveats.
